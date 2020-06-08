@@ -13,7 +13,7 @@ import re
 import time
 
 # Web Site Scraper
-def scrape_info():
+def scrape_all():
 
     #################################################
     # Windows
@@ -24,7 +24,7 @@ def scrape_info():
 
 
     # Visit the NASA Mars News Site
-    url = 'https://mars.nasa.gov/news/'
+    url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
     browser.visit(url)
 
     # Create dictionary to store items
@@ -38,13 +38,13 @@ def scrape_info():
 
     quotes = soup.find_all('div', class_='content_title')
     body = soup.find('div', class_='article_teaser_body')
-    print(quotes[1].text)
-    print(body.text)                        
+    print(quotes[1])
+    print(body)                        
                             
 
     # Store the title and paragraph as new_title and news_p
-    new_title = quotes[1].text
-    news_p = quotes1.text
+    new_title = quotes[1]
+    news_p = body
 
 
     # Add new_title and news_p to mars dictionary
@@ -207,4 +207,4 @@ def scrape_info():
     return mars
 if __name__ == "__main__":
     # If running as script, print scraped data
-    print(scrape_info())
+    print(scrape_all())
