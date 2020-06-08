@@ -39,8 +39,7 @@ def scrape_all():
     quotes = soup.find_all('div', class_='content_title')
     body = soup.find('div', class_='article_teaser_body')
     print(quotes[1])
-    print(body)                        
-                            
+    print(body)                                                 
 
     # Store the title and paragraph as new_title and news_p
     new_title = quotes[1]
