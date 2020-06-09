@@ -97,32 +97,32 @@ def scrape_all():
     # Close the brower
     browser.quit()
 
-    # Set Executable Path & Initialize Chrome Browser
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    # # Set Executable Path & Initialize Chrome Browser
+    # executable_path = {'executable_path': 'chromedriver.exe'}
+    # browser = Browser('chrome', **executable_path, headless=False)
 
     # Visit Mars Weather Twitter through splinter module
-    url = 'https://twitter.com/marswxreport?lang=en'
-    browser.visit(url)
+    # url = 'https://twitter.com/marswxreport?lang=en'
+    # browser.visit(url)
 
-    # Add sleep time
-    time.sleep(2)
+    # # Add sleep time
+    # time.sleep(2)
 
-    # HTML Object
-    # Parse HTML with Beautiful Soup
-    html = browser.html
-    soup = BeautifulSoup(html, 'html.parser')
+    # # HTML Object
+    # # Parse HTML with Beautiful Soup
+    # html = browser.html
+    # soup = BeautifulSoup(html, 'html.parser')
 
-    # Compile twitter text by using regular expression
-    twitter_text= re.compile(r'sol')
-    weather=soup.find('span', text=twitter_text).text
-    print(weather)
+    # # Compile twitter text by using regular expression
+    # twitter_text= re.compile(r'sol')
+    # weather=soup.find('span', text=twitter_text).text
+    # print(weather)
 
-    #Dictionary entry from twitter
-    mars["weather"]=weather
+    # #Dictionary entry from twitter
+    # mars["weather"]=weather
 
-    # Close the brower
-    browser.quit()
+    # # Close the brower
+    # browser.quit()
 
     # Set Executable Path & Initialize Chrome Browser
     executable_path = {'executable_path': 'chromedriver.exe'}
