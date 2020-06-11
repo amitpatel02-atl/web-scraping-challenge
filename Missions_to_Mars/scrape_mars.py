@@ -37,17 +37,18 @@ def scrape_all():
     soup = BeautifulSoup(html, 'html.parser')
 
     quotes = soup.find_all('div', class_='content_title')
-    body = soup.find('div', class_='article_teaser_body')
-    print(quotes[1])
+    body = soup.find('div', class_='article_teaser_body').text
+
+    print(quotes[1].text)
     print(body)                                                 
 
     # Store the title and paragraph as new_title and news_p
-    new_title = quotes[1]
+    news_title = quotes[1].text
     news_p = body
 
 
     # Add new_title and news_p to mars dictionary
-    mars["new_title"]=new_title
+    mars["news_title"]=news_title
     mars["news_p"]=news_p
 
 
@@ -97,32 +98,32 @@ def scrape_all():
     # Close the brower
     browser.quit()
 
-    # # Set Executable Path & Initialize Chrome Browser
-    # executable_path = {'executable_path': 'chromedriver.exe'}
-    # browser = Browser('chrome', **executable_path, headless=False)
+    # Set Executable Path & Initialize Chrome Browser
+    executable_path = {'executable_path': 'chromedriver.exe'}
+    browser = Browser('chrome', **executable_path, headless=False)
 
     # Visit Mars Weather Twitter through splinter module
-    # url = 'https://twitter.com/marswxreport?lang=en'
-    # browser.visit(url)
+    url = 'https://twitter.com/marswxreport?lang=en'
+    browser.visit(url)
 
-    # # Add sleep time
-    # time.sleep(2)
+    # Add sleep time
+    time.sleep(2)
 
-    # # HTML Object
-    # # Parse HTML with Beautiful Soup
-    # html = browser.html
-    # soup = BeautifulSoup(html, 'html.parser')
+    # HTML Object
+    # Parse HTML with Beautiful Soup
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
 
-    # # Compile twitter text by using regular expression
-    # twitter_text= re.compile(r'sol')
-    # weather=soup.find('span', text=twitter_text).text
-    # print(weather)
+    # Compile twitter text by using regular expression
+    twitter_text= re.compile(r'sol')
+    weather=soup.find('span', text=twitter_text).text
+    print(weather)
 
-    # #Dictionary entry from twitter
-    # mars["weather"]=weather
+    #Dictionary entry from twitter
+    mars["weather"]=weather
 
-    # # Close the brower
-    # browser.quit()
+    # Close the brower
+    browser.quit()
 
     # Set Executable Path & Initialize Chrome Browser
     executable_path = {'executable_path': 'chromedriver.exe'}
@@ -156,16 +157,21 @@ def scrape_all():
     # Clean up data and replace '\n' with ''
     file_html.replace('\n', '')
 
+    # Dictionary entry from twitter
+    mars["file_html"]= file_html
+
     # Export file to HTML
     with open('outputfile.html', 'w') as df:
         df.write(file_html)
 
+    mars["facts"]=file_html
+
     # Close the brower
-    browser.quit()
+    #browser.quit()
 
     # Set Executable Path & Initialize Chrome Browser
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    # executable_path = {'executable_path': 'chromedriver.exe'}
+    # browser = Browser('chrome', **executable_path, headless=False)
 
     # Visit the Mars hemisphere Site
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
